@@ -7,21 +7,19 @@ interface SearchProps {
   onSubmit: (text:string)=> void,
   hasError: boolean,
 }
+type FormFields = {
+  userName:  HTMLInputElement, 
+}
 
 export const Search = ({ hasError, onSubmit }: SearchProps) => {
-  const searchRef = useRef<HTMLInputElement | null>(null);
-  const handleSubmit = (event:React.FormEvent) => {
+  const handleSubmit = (event:React.FormEvent<HTMLFormElement & FormFields>) => {
     event.preventDefault();
+    const text = event.currentTarget.userName.value;
 
-    const text = searchRef.current ? searchRef.current.value : '';
-
-    if (text) {
+    if(text){
       onSubmit(text);
-      // перевіряю форму на наявність і очищую
-      if(searchRef.current)
-        searchRef.current.value = ''
+      event.currentTarget.reset();
     }
-
   }
   return (
     <form onSubmit={handleSubmit} autoComplete='off'>
@@ -30,7 +28,6 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
           <SearchIcon/>
         </label>
         <input
-          ref={searchRef}
           type='text'
           className={styles.textField}
           id='search'
