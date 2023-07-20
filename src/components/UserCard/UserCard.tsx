@@ -13,6 +13,9 @@ export const UserCard = (props: UserCardProps) => (
       name={props.name}
       login={props.login}
       />
+    <p className={`${styles.bio}${styles.bio ? '' : ` ${styles.empty}`}`}>
+      {props.bio}
+      </p>
     <UserStatistic
       repos={props.repos}
       followers={props.followers}
