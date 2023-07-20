@@ -15,7 +15,7 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
 
     const text = searchRef.current ? searchRef.current.value : '';
 
-    if (text) {
+    if (text.trim()) {
       onSubmit(text);
       // перевіряю форму на наявність і очищую
       if(searchRef.current)
