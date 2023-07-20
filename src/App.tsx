@@ -30,7 +30,7 @@ function App() {
     {/* передаю порожні данні аби побачити як відображається елемент на сторінці */}
     <Search hasError={!user} onSubmit={fetchUser}/>
     {user && (
-      <UserCard {...defaultUser } />
+      <UserCard {...user } />
     )}
   </Container>
   );
